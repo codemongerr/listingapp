@@ -16,8 +16,7 @@ class CreateListingsTable extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                  ->constrained('users', 'id')
-                  ->comment('use who created the listing');
+                  ->constrained('users', 'id');
             $table->string('name');
             $table->timestamps();
         });
