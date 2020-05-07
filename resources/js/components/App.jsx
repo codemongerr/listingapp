@@ -1,18 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Login";
+import Signup from "./Signup";
 
 function App() {
     return (
         <div className="container">
             <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">App Component</div>
-                        <div className="card-body">I'm an App component!</div>
-                    </div>
-                    <Login />
-                </div>
+                <Router>
+                    <Switch>
+                        <Route path="/signup" component={Signup}></Route>
+                        <Route component={Login}></Route>
+                    </Switch>
+                </Router>
             </div>
         </div>
     );
