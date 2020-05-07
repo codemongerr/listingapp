@@ -1,0 +1,34 @@
+# Listings APP
+
+### Setting up project
+
+-   Clone the repository
+-   Create `.env` file based on `.env.example`
+-   Run `composer install`
+-   Create database named `homestead` and update username and password in `.env`
+-   Run command `php artisan migrate --seed`
+
+### Available commands
+
+#### Run php server
+``php artisan serve``
+
+#### Run npm on watch mode
+``npm run watch``
+
+#### Bundle React
+``npm run dev``
+
+
+### Links
+Default [project URL](http://127.0.0.1:8000)
+
+[Migrations](https://github.com/codemongerr/listingapp/tree/master/database/migrations)
+
+[Seeds](https://github.com/codemongerr/listingapp/tree/master/database/seeds)
+
+[Factories](https://github.com/codemongerr/listingapp/tree/master/database/factories)
+
+[React Components](https://github.com/codemongerr/listingapp/tree/master/resources/js/components)
+
+[SASS](https://github.com/codemongerr/listingapp/tree/master/resources/sass)
