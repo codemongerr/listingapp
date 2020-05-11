@@ -3,9 +3,15 @@ import { Link, useHistory } from "react-router-dom";
 import Message from "../components/Message";
 import { setLocalStorageItem } from "../helper";
 
+/**
+ * Container component to create header and logout button
+ *
+ * @param {object} props
+ */
 function Header(props) {
     const { username, handleUserData } = props;
     const history = useHistory();
+    // @TODO: Move logout component to dedicated file
     const logout = e => {
         e.preventDefault();
         handleUserData(null);

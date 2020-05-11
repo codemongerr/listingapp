@@ -11,6 +11,7 @@ Single page app build using Laravel framework. Back-End is powered by REST API w
 -   Run command `php artisan migrate --seed`
 -   After running migration command run `php artisan passport:install --force`
 -   All users have `password` as default password
+-   Date and time is stored based on timezone set in MySQL if not using PHP methods
 
 ## Available commands
 
@@ -46,5 +47,5 @@ Single page app build using Laravel framework. Back-End is powered by REST API w
 
 ## @TODO
 
--   Add comments where applicable
+-   Add more comments where applicable
 -   Add tests

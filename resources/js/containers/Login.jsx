@@ -8,17 +8,26 @@ import Label from "../components/Label";
 import Message from "../components/Message";
 import { setLocalStorageItem } from "../helper";
 
+/**
+ * Container component to create login form
+ *
+ * @param {object} props
+ */
 function Login(props) {
+    // State to store login credentials
     const [data, setData] = useState({
         email: "",
         password: ""
     });
+    // State to store any errors
     const [errors, setErrors] = useState(null);
     const { handleUserData } = props;
+    // Method to update login credentials
     const handleChange = e => {
         const newData = { ...data, [e.target.name]: e.target.value };
         setData(newData);
     };
+    // Method to send login request
     const handleSubmit = e => {
         e.preventDefault();
         axios
