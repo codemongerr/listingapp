@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "../components/Button";
@@ -32,7 +32,16 @@ function Login(props) {
             })
             .catch(error => {
                 const errorData = error.response.data;
-                setErrors(errorData.errors);
+                let errorList = {};
+                if (errorData.error == "Unauthorised") {
+                    errorList = {
+                        ...errorList,
+                        unauthorized: "Invalid credentials provided"
+                    };
+                } else if (errorData.errors) {
+                    errorList = { ...errorList, ...errorData.errors };
+                }
+                setErrors(errorList);
             });
     };
     return (
@@ -44,6 +53,13 @@ function Login(props) {
                             <strong>Login</strong>
                         </h2>
                         <hr />
+                        {errors && errors.unauthorized && (
+                            <FormGroup>
+                                <Message variant="danger">
+                                    <strong>{errors.unauthorized}</strong>
+                                </Message>
+                            </FormGroup>
+                        )}
                         <FormGroup>
                             <Label htmlFor="email">Email</Label>
                             <Input

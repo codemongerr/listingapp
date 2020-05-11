@@ -26,7 +26,13 @@ function UserList(props) {
             axios
                 .delete(`http://127.0.0.1:8000/api/user/${id}`, config)
                 .then(response => {
-                    console.log(response.data);
+                    const data = response.data;
+                    if (data && data.success) {
+                        const updateList = list.filter(item => {
+                            return item.id != id;
+                        });
+                        setList(updateList);
+                    }
                 });
         }
         return false;

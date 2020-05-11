@@ -70368,7 +70368,17 @@ function Login(props) {
       }
     })["catch"](function (error) {
       var errorData = error.response.data;
-      setErrors(errorData.errors);
+      var errorList = {};
+
+      if (errorData.error == "Unauthorised") {
+        errorList = _objectSpread(_objectSpread({}, errorList), {}, {
+          unauthorized: "Invalid credentials provided"
+        });
+      } else if (errorData.errors) {
+        errorList = _objectSpread(_objectSpread({}, errorList), errorData.errors);
+      }
+
+      setErrors(errorList);
     });
   };
 
@@ -70382,7 +70392,9 @@ function Login(props) {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     className: "card-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormGroup__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Label__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), errors && errors.unauthorized && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormGroup__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Message__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    variant: "danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, errors.unauthorized))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormGroup__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Label__WEBPACK_IMPORTED_MODULE_6__["default"], {
     htmlFor: "email"
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
     id: "email",
@@ -70474,6 +70486,8 @@ function Signup() {
       successMessage = _useState6[0],
       setSuccessMessage = _useState6[1];
 
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
+
   var handleChange = function handleChange(e) {
     var userData = _objectSpread(_objectSpread({}, data), _defineProperty({}, e.target.name, e.target.value));
 
@@ -70486,10 +70500,11 @@ function Signup() {
       var resData = response.data;
 
       if (resData.success) {
-        setSuccessMessage("Your account is created successfully and you can login using your credentials.");
+        setSuccessMessage("Your account is created successfully. You can login using your credentials.");
         var interval = setTimeout(function () {
           setSuccessMessage("");
           clearInterval(interval);
+          history.push("/");
         }, 5000);
       }
 
@@ -70787,7 +70802,14 @@ function UserList(props) {
 
     if (id && confirm("Are you sure you want to delete this user?")) {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("http://127.0.0.1:8000/api/user/".concat(id), config).then(function (response) {
-        console.log(response.data);
+        var data = response.data;
+
+        if (data && data.success) {
+          var updateList = list.filter(function (item) {
+            return item.id != id;
+          });
+          setList(updateList);
+        }
       });
     }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Button from "../components/Button";
 import FormGroup from "../components/FormGroup";
@@ -11,6 +11,7 @@ function Signup() {
     const [data, setData] = useState(null);
     const [errors, setErrors] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
+    let history = useHistory();
     const handleChange = e => {
         const userData = { ...data, ...{ [e.target.name]: e.target.value } };
         setData(userData);
@@ -23,11 +24,12 @@ function Signup() {
                 const resData = response.data;
                 if (resData.success) {
                     setSuccessMessage(
-                        "Your account is created successfully and you can login using your credentials."
+                        "Your account is created successfully. You can login using your credentials."
                     );
                     const interval = setTimeout(() => {
                         setSuccessMessage("");
                         clearInterval(interval);
+                        history.push("/");
                     }, 5000);
                 }
                 setErrors(null);
