@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 2)->create()->each(function ($user){
+        factory(User::class, 50)->create()->each(function ($user){
             $user->save();
         });
     }

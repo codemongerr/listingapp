@@ -1,30 +1,34 @@
-# Listings APP
+# User Management App
 
-### Setting up project
+Single page app build using Laravel framework. Back-End is powered by REST API with Oauth2 for aithentication and Front-End is fully powered by ReactJs.
 
--   Clone the repository
+## Setting up project
+
+-   Clone repository
 -   Create `.env` file based on `.env.example`
 -   Run `composer install`
 -   Create database named `homestead` and update username and password in `.env`
 -   Run command `php artisan migrate --seed`
+-   After running migration command run `php artisan passport:install --force`
+-   All users have `password` as default password
 
-### Available commands
+## Available commands
 
 #### Run php server
 
 `php artisan serve`
 
-#### Run npm on watch mode
+### Run npm on watch mode
 
 `npm run watch`
 
-#### Bundle React
+### Bundle React
 
 `npm run dev`
 
 ### Links
 
-Default [project URL](http://127.0.0.1:8000)
+[Project URL](http://127.0.0.1:8000)
 
 [Migrations](https://github.com/codemongerr/listingapp/tree/master/database/migrations)
 
@@ -35,5 +39,7 @@ Default [project URL](http://127.0.0.1:8000)
 [Factories](https://github.com/codemongerr/listingapp/tree/master/database/factories)
 
 [React Components](https://github.com/codemongerr/listingapp/tree/master/resources/js/components)
+
+[React Containers](https://github.com/codemongerr/listingapp/tree/master/resources/js/components)
 
 [SASS](https://github.com/codemongerr/listingapp/tree/master/resources/sass)
