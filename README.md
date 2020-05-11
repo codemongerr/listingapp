@@ -40,7 +40,7 @@ Single page app build using Laravel framework. Back-End is powered by REST API w
 
 [React Components](https://github.com/codemongerr/listingapp/tree/master/resources/js/components)
 
-[React Containers](https://github.com/codemongerr/listingapp/tree/master/resources/js/components)
+[React Containers](https://github.com/codemongerr/listingapp/tree/master/resources/js/containers)
 
 [SASS](https://github.com/codemongerr/listingapp/tree/master/resources/sass)
 
