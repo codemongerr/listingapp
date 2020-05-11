@@ -1,6 +1,6 @@
 # User Management App
 
-Single page app build using Laravel framework. Back-End is powered by REST API with Oauth2 for aithentication and Front-End is fully powered by ReactJs.
+Single page app build using Laravel framework. Back-End is powered by REST API with Oauth2 for authentication and Front-End is fully powered by ReactJS.
 
 ## Setting up project
 

@@ -14,11 +14,11 @@ function UserEdit(props) {
     const { id } = useParams();
     const { token, isAdmin } = props;
     useEffect(() => {
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
         const getUserData = id => {
-            if (id) {
+            if (id && isAdmin) {
+                const config = {
+                    headers: { Authorization: `Bearer ${token}` }
+                };
                 axios
                     .get(`http://127.0.0.1:8000/api/user/${id}`, config)
                     .then(response => {
@@ -37,8 +37,11 @@ function UserEdit(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
         axios
-            .put(`http://127.0.0.1:8000/api/user/${id}`, data)
+            .put(`http://127.0.0.1:8000/api/user/${id}`, data, config)
             .then(response => {
                 const resData = response.data;
                 if (resData.success === true) {
